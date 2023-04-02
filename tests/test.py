@@ -4,14 +4,14 @@ from pages.registr_page import RegistrPage
 from pages.locators import AuthLocators
 from settings import *
 
-#1 Открытие формы "Регистрация"______________________________________________
+#1 РћС‚РєСЂС‹С‚РёРµ С„РѕСЂРјС‹ "Р РµРіРёСЃС‚СЂР°С†РёСЏ"______________________________________________
 def test_registration_link(selenium):
     page = AuthPage(selenium)
     page.register_link.click()
-    assert page.find_other_element(*AuthLocators.registration).text == 'Регистрация'
+    assert page.find_other_element(*AuthLocators.registration).text == 'Р РµРіРёСЃС‚СЂР°С†РёСЏ'
 
 
-# Форма "Регистрация" наличие основных активных элементов _______________________________
+# Р¤РѕСЂРјР° "Р РµРіРёСЃС‚СЂР°С†РёСЏ" РЅР°Р»РёС‡РёРµ РѕСЃРЅРѕРІРЅС‹С… Р°РєС‚РёРІРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ _______________________________
 def test_elements_registration(selenium):
     try:
         page_reg = RegistrPage(selenium)
@@ -27,23 +27,23 @@ def test_elements_registration(selenium):
             assert page_reg.password_registration_confirm in card_of_reg
             assert page_reg.registration_btn in card_of_reg
     except AssertionError:
-        print('Элемент отсутствует в форме «Регистрация»')
+        print('Р­Р»РµРјРµРЅС‚ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ С„РѕСЂРјРµ В«Р РµРіРёСЃС‚СЂР°С†РёСЏВ»')
 
-# 3 Форма "Регистрация" Соответствие названий элементов по требованию ______________________________________
+# 3 Р¤РѕСЂРјР° "Р РµРіРёСЃС‚СЂР°С†РёСЏ" РЎРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РЅР°Р·РІР°РЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ РїРѕ С‚СЂРµР±РѕРІР°РЅРёСЋ ______________________________________
 def test_names_elements_registration(selenium):
     try:
         page_reg = RegistrPage(selenium)
-        assert 'Имя' in page_reg.card_of_registration.text
-        assert 'Фамилия' in page_reg.card_of_registration.text
-        assert 'Регион' in page_reg.card_of_registration.text
-        assert 'E-mail или мобильный телефон' in page_reg.card_of_registration.text
-        assert 'Пароль' in page_reg.card_of_registration.text
-        assert 'Подтверждение пароля' in page_reg.card_of_registration.text
-        assert 'Продолжить' in page_reg.card_of_registration.text
+        assert 'РРјСЏ' in page_reg.card_of_registration.text
+        assert 'Р¤Р°РјРёР»РёСЏ' in page_reg.card_of_registration.text
+        assert 'Р РµРіРёРѕРЅ' in page_reg.card_of_registration.text
+        assert 'E-mail РёР»Рё РјРѕР±РёР»СЊРЅС‹Р№ С‚РµР»РµС„Рѕ' in page_reg.card_of_registration.text
+        assert 'РїР°СЂРѕР»СЊ' in page_reg.card_of_registration.text
+        assert 'РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РїР°СЂРѕР»СЏ' in page_reg.card_of_registration.text
+        assert 'РџСЂРѕРґРѕР»Р¶РёС‚СЊ' in page_reg.card_of_registration.text
     except AssertionError:
-        print('Название элемента в форме «Регистрация» не соответствует Требованию')
+        print('РќР°Р·РІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ С„РѕСЂРјРµ В«Р РµРіРёСЃС‚СЂР°С†РёСЏВ» РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РўСЂРµР±РѕРІР°РЅРёСЋ')
 
-# 4 Форма "Регистрация". Проверка валидных значений "Имя" и "Фамилия" ___________________________________________
+# # 4 Р¤РѕСЂРјР° "Р РµРіРёСЃС‚СЂР°С†РёСЏ". РџСЂРѕРІРµСЂРєР° РІР°Р»РёРґРЅС‹С… Р·РЅР°С‡РµРЅРёР№ "РРјСЏ" Рё "Р¤Р°РјРёР»РёСЏ" _______________________________________________
 def test_registration_valid_data(selenium):
     page_reg = RegistrPage(selenium)
     page_reg.first_name.send_keys(Settings.first_name)
@@ -57,9 +57,9 @@ def test_registration_valid_data(selenium):
     page_reg.password_registration_confirm.send_keys(Settings.valid_password)
     page_reg.password_registration_confirm.clear()
     page_reg.registration_btn.click()
-    assert page_reg.find_other_element(*AuthLocators.email_confirm).text == 'Подтверждение email'
+    assert page_reg.find_other_element(*AuthLocators.email_confirm).text == 'РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ email'
 
-# 5 Форма "Регистрация". Проверка на уникальность email (дубль) ______________________________________________
+# 5 Р¤РѕСЂРјР° "Р РµРіРёСЃС‚СЂР°С†РёСЏ". РџСЂРѕРІРµСЂРєР° РЅР° СѓРЅРёРєР°Р»СЊРЅРѕСЃС‚СЊ email (РґСѓР±Р»СЊ)  ______________________________________________
 def test_registration_invalid_data(selenium):
     page_reg = RegistrPage(selenium)
     page_reg.first_name.send_keys(Settings.first_name)
@@ -73,10 +73,10 @@ def test_registration_invalid_data(selenium):
     page_reg.password_registration_confirm.send_keys(Settings.valid_password)
     page_reg.password_registration_confirm.clear()
     page_reg.registration_btn.click()
-    assert "Учётная запись уже существует" in page_reg.find_other_element(*AuthLocators.error_account_exists).text
+    assert "РЈС‡С‘С‚РЅР°СЏ Р·Р°РїРёСЃСЊ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚" in page_reg.find_other_element(*AuthLocators.error_account_exists).text
 
 
-# 6 Форма "Регистрация" ввод имени допустимыми валидными значениями на кириллице длиной 100
+# 6 Р¤РѕСЂРјР° "Р РµРіРёСЃС‚СЂР°С†РёСЏ" РІРІРѕРґ РёРјРµРЅРё РґРѕРїСѓСЃС‚РёРјС‹РјРё РІР°Р»РёРґРЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё РЅР° РєРёСЂРёР»Р»РёС†Рµ РґР»РёРЅРѕР№ 100
 @pytest.mark.parametrize("valid_first_name",
                          [(Settings.russian_generate_string) * 100],
                          ids=['russ_symbols=30'])
@@ -86,10 +86,10 @@ def test_first_name_by_valid_data(selenium, valid_first_name):
     page_reg.first_name.clear()
     page_reg.registration_btn.click()
 
-    assert 'Необходимо заполнить поле кириллицей. От 2 до 30 символов.' not in page_reg.container_first_name.text
+    assert 'РќРµРѕР±С…РѕРґРёРјРѕ Р·Р°РїРѕР»РЅРёС‚СЊ РїРѕР»Рµ РєРёСЂРёР»Р»РёС†РµР№. РћС‚ 2 РґРѕ 30 СЃРёРјРІРѕР»РѕРІ.' not in page_reg.container_first_name.text
 
 
-# 7 Форма "Авторизация Тест авторизации с  валидными e-mail и паролем ________________________________________
+# 7 Р¤РѕСЂРјР° "РђРІС‚РѕСЂРёР·Р°С†РёСЏ РўРµСЃС‚ Р°РІС‚РѕСЂРёР·Р°С†РёРё СЃ  РІР°Р»РёРґРЅС‹РјРё e-mail Рё РїР°СЂРѕР»РµРј ________________________________________
 def test_autoriz_valid_email_pass(selenium):
     page = AuthPage(selenium)
     page.email.send_keys(Settings.valid_email)
@@ -101,14 +101,14 @@ def test_autoriz_valid_email_pass(selenium):
     try:
         assert page.get_relative_link() == '/account_b2c/page'
     except AssertionError:
-        assert 'Неверно введен текст с картинки' in page.find_other_element(*AuthLocators.error_message).text
+        assert 'РќРµРІРµСЂРЅРѕ РІРІРµРґРµРЅ С‚РµРєСЃС‚ СЃ РєР°СЂС‚РёРЅРєРё' in page.find_other_element(*AuthLocators.error_message).text
 
 @pytest.mark.parametrize("incor_email", [Settings.invalid_email, Settings.empty_email],
                          ids=['invalid_email', 'empty'])
 @pytest.mark.parametrize("incor_passw", [Settings.invalid_password, Settings.empty_password],
                          ids=['invalid_password', 'empty'])
 
-# 8 Форма "Авторизация Тест авторизации с  НЕвалидными e-mail и паролем __________________________________________
+# 8 Р¤РѕСЂРјР° "РђРІС‚РѕСЂРёР·Р°С†РёСЏ РўРµСЃС‚ Р°РІС‚РѕСЂРёР·Р°С†РёРё СЃ  РќР•РІР°Р»РёРґРЅС‹РјРё e-mail Рё РїР°СЂРѕР»РµРј __________________________________________
 def test_autoriz_invalid_email_pass(selenium, incor_email, incor_passw):
     page = AuthPage(selenium)
     page.email.send_keys(incor_email)
@@ -118,7 +118,7 @@ def test_autoriz_invalid_email_pass(selenium, incor_email, incor_passw):
     page.btn_enter.click()
     assert page.get_relative_link() != '/account_b2c/page'
 
-# 9 Форма "Авторизация Активные элементы формы Авторизация ______________________________________________________
+# 9 Р¤РѕСЂРјР° "РђРІС‚РѕСЂРёР·Р°С†РёСЏ РђРєС‚РёРІРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ С„РѕСЂРјС‹ РђРІС‚РѕСЂРёР·Р°С†РёСЏ ______________________________________________________
 def test_elements_of_autoriz(selenium):
     page = AuthPage(selenium)
     assert page.menu_tub.text in page.card_of_auth.text
@@ -128,7 +128,7 @@ def test_elements_of_autoriz(selenium):
     assert page.forgot_password_link.text in page.card_of_auth.text
     assert page.register_link.text in page.card_of_auth.text
 
-# 10 Форма Авторизации, Поля меняются в зависимости от типа авторизации________________________________
+# 10 Р¤РѕСЂРјР° РђРІС‚РѕСЂРёР·Р°С†РёРё, РџРѕР»СЏ РјРµРЅСЏСЋС‚СЃСЏ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РёРїР° Р°РІС‚РѕСЂРёР·Р°С†РёРё________________________________
 def test_placeholder_name_swap(selenium):
     page = AuthPage(selenium)
     page.tub_phone.click()
@@ -140,13 +140,13 @@ def test_placeholder_name_swap(selenium):
     page.tub_ls.click()
     assert page.placeholder_name.text in Settings.placeholder_name
 
-# 11 Переход к форме Восстановление пароля ____________________________________________
+# 11 РџРµСЂРµС…РѕРґ Рє С„РѕСЂРјРµ Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂРѕР»СЏ ____________________________________________
 def test_forgot_password_link(selenium):
     page = AuthPage(selenium)
     page.driver.execute_script("arguments[0].click();", page.forgot_password_link)
-    assert page.find_other_element(*AuthLocators.password_recovery).text == 'Восстановление пароля'
+    assert page.find_other_element(*AuthLocators.password_recovery).text == 'Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂРѕР»СЏ'
 
-# 12 Форма "Авторизация" после нажатия кнопки "Войти" при регистрации пользователя e-mail, который уже был использован ранее для регистрации. """
+# 12 Р¤РѕСЂРјР° "РђРІС‚РѕСЂРёР·Р°С†РёСЏ" РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј e-mail, РєРѕС‚РѕСЂС‹Р№ СѓР¶Рµ Р±С‹Р» РёСЃРїРѕР»СЊР·РѕРІР°РЅ СЂР°РЅРµРµ РґР»СЏ СЂРµРіРёСЃС‚СЂР°С†РёРё____________________________
 def test_registration_and_redir_auth(selenium):
     page_reg = RegistrPage(selenium)
     page_reg.first_name.send_keys(Settings.first_name)
@@ -161,9 +161,9 @@ def test_registration_and_redir_auth(selenium):
     page_reg.password_registration_confirm.clear()
     page_reg.registration_btn.click()
     page_reg.find_other_element(*AuthLocators.redirect_auth).click()
-    assert 'Авторизация' in page_reg.find_other_element(*AuthLocators.authorization).text
+    assert 'РђРІС‚РѕСЂРёР·Р°С†РёСЏ' in page_reg.find_other_element(*AuthLocators.authorization).text
 
-# 13 Форма "Регистрация" невалидными значениями в поле ввода Имени
+# 13 Р¤РѕСЂРјР° "Р РµРіРёСЃС‚СЂР°С†РёСЏ" РЅРµРІР°Р»РёРґРЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё РІ РїРѕР»Рµ РІРІРѕРґР° РРјРµРЅРё __________________________________________________
 @pytest.mark.parametrize("invalid_first_name",
                          [(Settings.empty), (Settings.numbers), (Settings.latin_generate_string), (Settings.special_chars)],
                          ids=['empty', 'numbers', 'latin_symbols', 'special_symbols'])
@@ -173,11 +173,11 @@ def test_first_name_invalid_data(selenium, invalid_first_name):
     page_reg.first_name.clear()
     page_reg.registration_btn.click()
 
-    assert 'Необходимо заполнить поле кириллицей. От 2 до 30 символов.' in \
+    assert 'РќРµРѕР±С…РѕРґРёРјРѕ Р·Р°РїРѕР»РЅРёС‚СЊ РїРѕР»Рµ РєРёСЂРёР»Р»РёС†РµР№. РћС‚ 2 РґРѕ 30 СЃРёРјРІРѕР»РѕРІ.' in \
            page_reg.find_other_element(*AuthLocators.error_first_name).text
 
 
-# 14 Форма Регистрация поле Пароль значения валидны
+# 14 Р¤РѕСЂРјР° Р РµРіРёСЃС‚СЂР°С†РёСЏ РїРѕР»Рµ РџР°СЂРѕР»СЊ Р·РЅР°С‡РµРЅРёСЏ РІР°Р»РёРґРЅС‹ ________________________________________________
 @pytest.mark.parametrize("valid_password",
                          [(Settings.passw1), (Settings.passw2), (Settings.passw3)],
                          ids=['valid_symbols=8', 'valid_symbols=15', 'valid_symbols=20'])
@@ -187,14 +187,14 @@ def test_last_name_valid_data(selenium, valid_password):
     page_reg.password_registration.clear()
     page_reg.registration_btn.click()
 
-    assert 'Длина пароля должна быть не менее 8 символов' and \
-           'Пароль должен содержать хотя бы одну заглавную букву' and \
-           'Пароль должен содержать хотя бы одну прописную букву' and \
-           'Пароль должен содержать хотя бы 1 спецсимвол или хотя бы одну цифру' not in \
+    assert 'Р”Р»РёРЅР° РїР°СЂРѕР»СЏ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 8 СЃРёРјРІРѕР»РѕРІ' and \
+           'РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ Р·Р°РіР»Р°РІРЅСѓСЋ Р±СѓРєРІСѓ' and \
+           'РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ РїСЂРѕРїРёСЃРЅСѓСЋ Р±СѓРєРІСѓ' and \
+           'РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ 1 СЃРїРµС†СЃРёРјРІРѕР» РёР»Рё С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ С†РёС„СЂСѓ' not in \
            page_reg.password_registration.text
 
 
-# 15 Форма Регистрация поле Пароль1 Пароль повторно
+# 15 Р¤РѕСЂРјР° Р РµРіРёСЃС‚СЂР°С†РёСЏ РїРѕР»Рµ РџР°СЂРѕР»СЊ1 РџР°СЂРѕР»СЊ РїРѕРІС‚РѕСЂРЅРѕ ____________________________________________________
 def test_registration_confirm_password_invalid_data(selenium):
     page_reg = RegistrPage(selenium)
     page_reg.password_registration.send_keys(Settings.passw1)
@@ -202,4 +202,4 @@ def test_registration_confirm_password_invalid_data(selenium):
     page_reg.password_registration_confirm.send_keys(Settings.passw2)
     page_reg.password_registration_confirm.clear()
     page_reg.registration_btn.click()
-    assert 'Пароли не совпадают' in page_reg.find_other_element(*AuthLocators.error_password_confirm).text
+    assert 'РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚' in page_reg.find_other_element(*AuthLocators.error_password_confirm).text
